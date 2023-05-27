@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SFML C:/Users/selya/programming/SFML+MinGW)
 
-file(GLOB my_src source/*.cpp)
+file(GLOB my_src source/*.cpp source/*/*.cpp)
 add_executable(${PROJECT_NAME} ${my_src})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${SFML}/include)
