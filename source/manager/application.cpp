@@ -27,5 +27,5 @@ void Application::set_next_state(std::unique_ptr<IState>&& state) {
 void Application::apply_deffer_state_change() {
     if (!m_ptr_state_next) { return; }
     std::swap(m_ptr_state_current, m_ptr_state_next);
-    m_ptr_state_next = nullptr;
+    m_ptr_state_next.reset();
 }
