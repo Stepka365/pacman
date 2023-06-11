@@ -6,5 +6,5 @@ class IEntity;
 
 class IRoomSide : public IMyDrawable {
 public:
-    virtual void enter(const IEntity& entity) = 0;
+    virtual void enter(IEntity& entity) = 0;
 };

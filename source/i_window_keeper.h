@@ -1,11 +1,12 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <string>
+#include "configuration.h"
 
 class IWindowKeeper : public sf::RenderWindow {
 public:
-    IWindowKeeper(const sf::VideoMode& mode, const std::string& title) : m_window(mode, title) {}
+    IWindowKeeper(const sf::VideoMode& mode, const std::string& title) : m_window(mode, title) {
+        m_window.setFramerateLimit(config::FRAMERATE_LIMIT);
+    }
 protected:
     virtual void event_handling() = 0;
     virtual void update() = 0;

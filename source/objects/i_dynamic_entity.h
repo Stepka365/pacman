@@ -1,8 +1,9 @@
-//
-// Created by selya on 11.06.2023.
-//
+#pragma once
 
-#ifndef LABO_4TH_I_DYNAMIC_ENTITY_H
-#define LABO_4TH_I_DYNAMIC_ENTITY_H
+#include "i_entity.h"
 
-#endif //LABO_4TH_I_DYNAMIC_ENTITY_H
+class IDynamicEntity : public IEntity {
+public:
+    void virtual action() = 0;
+    std::unique_ptr<IDynamicEntity> virtual clone() = 0;
+};
