@@ -6,7 +6,7 @@ class Food : public IStaticEntity {
 public:
     Food();
     void draw_into(sf::RenderWindow& window) override { window.draw(m_polygon); }
-    std::unique_ptr<IStaticEntity> clone() override { return std::make_unique<Food>(*this); }
+    std::unique_ptr<IStaticEntity> clone() const override { return std::make_unique<Food>(*this); }
 
 private:
     sf::CircleShape m_polygon;

@@ -1,8 +1,15 @@
-//
-// Created by selya on 11.06.2023.
-//
+#pragma once
 
-#ifndef LABO_4TH_GAME_CONTEXT_H
-#define LABO_4TH_GAME_CONTEXT_H
+#include "i_dynamic_entity.h"
+#include "i_static_entity.h"
+#include "pacman.h"
 
-#endif //LABO_4TH_GAME_CONTEXT_H
+class GameContext {
+public:
+    GameContext clone();
+
+    enum State { INGAME, WIN, LOST } state = INGAME;
+    Pacman pacman;
+    std::vector<std::unique_ptr<IDynamicEntity>> dynamic_objects;
+    std::vector<std::unique_ptr<IStaticEntity>> static_objects;
+};

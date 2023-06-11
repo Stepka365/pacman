@@ -4,5 +4,5 @@
 
 class IStaticEntity : public IEntity {
 public:
-    std::unique_ptr<IStaticEntity> virtual clone() = 0;
+    virtual std::unique_ptr<IStaticEntity> clone() const = 0;
 };

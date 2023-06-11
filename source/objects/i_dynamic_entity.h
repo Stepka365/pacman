@@ -4,6 +4,6 @@
 
 class IDynamicEntity : public IEntity {
 public:
-    void virtual action() = 0;
-    std::unique_ptr<IDynamicEntity> virtual clone() = 0;
+    virtual void action() = 0;
+    virtual std::unique_ptr<IDynamicEntity> clone() const = 0;
 };

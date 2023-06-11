@@ -7,7 +7,7 @@ public:
     Enemy();
     void draw_into(sf::RenderWindow& window) override { window.draw(m_polygon); }
     void action() override;
-    std::unique_ptr<IDynamicEntity> clone() override { return std::make_unique<Enemy>(*this); }
+    std::unique_ptr<IDynamicEntity> clone() const override { return std::make_unique<Enemy>(*this); }
 
 private:
     void try_to_move();

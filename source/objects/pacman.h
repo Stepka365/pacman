@@ -1,8 +1,13 @@
-//
-// Created by selya on 11.06.2023.
-//
+#pragma once
 
-#ifndef LABO_4TH_PACMAN_H
-#define LABO_4TH_PACMAN_H
+#include "i_entity.h"
 
-#endif //LABO_4TH_PACMAN_H
+class Pacman : public IEntity {
+public:
+    Pacman();
+    void draw_into(sf::RenderWindow& window) override { window.draw(m_polygon); }
+    void move(Room::Direction direction) { m_location->get_side(direction)->enter(*this); }
+private:
+    sf::CircleShape m_polygon;
+    sf::Texture m_skin;
+};

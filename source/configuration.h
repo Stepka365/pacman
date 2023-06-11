@@ -20,15 +20,20 @@ namespace config {
     const float FOOD_SIZE = ROOM_SIZE * 0.3;
     const size_t FOOD_POINT_COUNT = 3;
     const sf::Color FOOD_COLOR{232, 103, 120};
-    const int FOOD_OUTLINE_THICKNESS = -1;
+    const int FOOD_OUTLINE_THICKNESS = 3;
     //Enemy
     const std::string ENEMY_FILE{"crazy.png"};
     const float ENEMY_SIZE = ROOM_SIZE * 0.6;
     const size_t ENEMY_POINT_COUNT = 5;
     const sf::Color ENEMY_COLOR{116, 33, 134};
-    const int ENEMY_OUTLINE_THICKNESS = -2;
+    const int ENEMY_OUTLINE_THICKNESS = 3;
     const float ACTION_MEAN = 0.6;
     const float ACTION_STDDEV = 0.2;
+    // Pacman
+    const std::string PACMAN_FILE{};
+    const float PACMAN_SIZE = ROOM_SIZE * 0.8;
+    const sf::Color PACMAN_COLOR{253,240,193};
+    const int PACMAN_OUTLINE_THICKNESS = 3;
     // Button
     const sf::Vector2f BUTTON_SIZE{250, 100};
     const size_t BUTTON_FONT_SIZE = static_cast<size_t>(BUTTON_SIZE.y / 2.0f);
