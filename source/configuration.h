@@ -12,6 +12,7 @@ namespace config {
     const std::string GAME_WINDOW_NAME_EASY{"Pacman easy"};
     const std::string GAME_WINDOW_NAME_MEDIUM{"Pacman medium"};
     const std::string GAME_WINDOW_NAME_HARD{"Pacman hard"};
+    const sf::Color WALL_COLOR{0, 255, 0};
     // Button
     const sf::Vector2f BUTTON_SIZE{250, 100};
     const size_t BUTTON_FONT_SIZE = static_cast<size_t>(BUTTON_SIZE.y / 2.0f);

@@ -2,7 +2,7 @@
 
 #include "../i_state+exit.h"
 #include "../i_window_keeper.h"
-#include "maze.h"
+#include "../maze/maze.h"
 #include "context_manager.h"
 
 class GameState : public IState, public IWindowKeeper {
