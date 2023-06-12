@@ -1,7 +1,4 @@
 #include "enemy.h"
-#include "../configuration.h"
-
-#include <random>
 
 Enemy::Enemy() : m_polygon(config::ENEMY_SIZE, config::ENEMY_POINT_COUNT) {
     m_polygon.setOrigin(m_polygon.getRadius(), m_polygon.getRadius());
@@ -19,18 +16,12 @@ Enemy::Enemy() : m_polygon(config::ENEMY_SIZE, config::ENEMY_POINT_COUNT) {
 
 void Enemy::action() {
     if (m_clock.getElapsedTime().asSeconds() >= m_time_before_action) {
-        try_to_move();
-        std::mt19937 gen{std::random_device{}()};
-        std::normal_distribution<float> time{config::ACTION_MEAN, config::ACTION_STDDEV};
-        m_time_before_action = time(gen);
+
+        auto target = Room::Direction(s_side_choice(s_gen));
+        auto target_side = m_location->get_side(target);
+        target_side->enter(*this);
+
+        m_time_before_action = s_rest_time(s_gen);
+        m_clock.restart();
     }
-}
-
-void Enemy::try_to_move() {
-    std::mt19937 gen{std::random_device{}()};
-    std::uniform_int_distribution number{0, 3};
-    auto target = Room::Direction(number(gen));
-
-    auto target_side = m_location->get_side(target);
-    target_side->enter(*this);
 }
