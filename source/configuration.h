@@ -15,6 +15,9 @@ namespace config {
     const std::string GAME_WINDOW_NAME_HARD{"Pacman hard"};
     const sf::Color WALL_COLOR{0, 255, 0};
     const float ROOM_SIZE = 50;
+    const sf::Color BACKGROUND_INGAME{255, 255, 255};
+    const sf::Color BACKGROUND_LOST{255, 0, 0};
+    const sf::Color BACKGROUND_WIN{0, 255, 0};
     // Food
     const std::string FOOD_FILE{"yum.png"};
     const float FOOD_SIZE = ROOM_SIZE * 0.3;

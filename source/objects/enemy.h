@@ -25,4 +25,4 @@ private:
 
 std::mt19937 Enemy::s_gen{std::random_device{}()};
 std::normal_distribution<float> Enemy::s_rest_time{config::ACTION_MEAN, config::ACTION_STDDEV};
-std::uniform_int_distribution Enemy::s_side_choice{0, 3};
+std::uniform_int_distribution<int> Enemy::s_side_choice{0, 3};
