@@ -17,4 +17,3 @@ private:
     void render() override;
     Menu m_menu;
 };
-

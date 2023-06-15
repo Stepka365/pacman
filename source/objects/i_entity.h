@@ -2,8 +2,6 @@
 
 #include "../maze/room.h"
 
-#include <memory>
-
 class IEntity : public IMyDrawable {
 public:
     void set_location(Room* room) { m_location = room; }

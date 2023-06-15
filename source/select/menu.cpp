@@ -67,4 +67,3 @@ void Menu::draw_into(sf::RenderWindow& window) {
         ptr_button->draw_into(window);
     }
 }
-

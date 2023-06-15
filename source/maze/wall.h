@@ -6,7 +6,7 @@ class Wall : public IRoomSide {
 public:
     Wall(Room& room) : m_room(room) {}
     void draw_into(sf::RenderWindow& window) override;
-    void enter(IEntity &entity) override {}
+    void enter(IEntity& entity) override {}
 
 private:
     void prepare_to_draw();

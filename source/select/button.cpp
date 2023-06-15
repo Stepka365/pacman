@@ -24,14 +24,21 @@ Button::Button(const sf::Vector2f& button_center_pos,
 
     m_ptr_command = std::move(ptr_command);
 }
+
 void Button::select() {
     m_rectangle.setFillColor(config::BUTTON_COLOR_SELECTION);
     m_is_selected = true;
 }
+
 void Button::unselect() {
     m_rectangle.setFillColor(config::BUTTON_COLOR_FILL);
     m_is_selected = false;
 }
+
+bool Button::is_position_in(const sf::Vector2f& pos) {
+    return m_rectangle.getGlobalBounds().contains(pos);
+}
+
 void Button::draw_into(sf::RenderWindow& window) {
     window.draw(m_rectangle);
     window.draw(m_text);

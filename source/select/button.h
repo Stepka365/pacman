@@ -13,7 +13,7 @@ public:
     void select();
     void unselect();
     bool is_selected() const { return m_is_selected; }
-    bool is_position_in(const sf::Vector2f& pos) { return m_rectangle.getGlobalBounds().contains(pos); }
+    bool is_position_in(const sf::Vector2f& pos);
     void push() { m_ptr_command->execute(); }
     void draw_into(sf::RenderWindow& window) override;
 private:

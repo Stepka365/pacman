@@ -2,7 +2,7 @@
 
 void Room::draw_into(sf::RenderWindow& window) {
     window.draw(m_rectangle);
-    for (const auto& side: m_sides){
+    for (const auto& side: m_sides) {
         side->draw_into(window);
     }
 }
