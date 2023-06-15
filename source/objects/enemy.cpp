@@ -2,8 +2,6 @@
 
 Enemy::Enemy() : m_polygon(config::ENEMY_SIZE, config::ENEMY_POINT_COUNT) {
     m_polygon.setOrigin(m_polygon.getRadius(), m_polygon.getRadius());
-    m_polygon.setPosition(m_location->get_position().x + config::ROOM_SIZE / 2,
-                          m_location->get_position().y + config::ROOM_SIZE / 2);
     if (!m_skin.loadFromFile(config::ENEMY_FILE)) {
         throw std::runtime_error("No such file in directory");
     }
@@ -11,7 +9,7 @@ Enemy::Enemy() : m_polygon(config::ENEMY_SIZE, config::ENEMY_POINT_COUNT) {
     m_polygon.setOutlineThickness(config::ENEMY_OUTLINE_THICKNESS);
     m_polygon.setOutlineColor(config::ENEMY_COLOR);
 
-    m_time_before_action = config::ACTION_MEAN;
+    m_time_before_action = s_rest_time(s_gen);
 }
 
 void Enemy::action() {

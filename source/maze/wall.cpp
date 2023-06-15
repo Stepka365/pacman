@@ -7,9 +7,9 @@ void Wall::draw_into(sf::RenderWindow& window) {
 }
 
 void Wall::prepare_to_draw() {
-    auto pos = m_room->get_position();
-    auto side = m_room->get_direction(this);
-    auto len = m_room->get_size();
+    auto pos = m_room.get_position();
+    auto side = m_room.get_direction(this);
+    auto len = m_room.get_size();
     if (side == Room::DOWN) {
         m_line[0].position = {pos.x, pos.y + len};
         m_line[1].position = {pos.x + len, pos.y + len};

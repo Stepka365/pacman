@@ -4,8 +4,6 @@
 #include "../i_my_drawable.h"
 #include "button.h"
 
-#include <vector>
-
 class Menu : public IMyDrawable {
 public:
     Menu(IStateManager& state_manager);

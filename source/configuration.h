@@ -9,12 +9,16 @@ namespace config {
     const std::string SELECT_WINDOW_TITLE{"Select level"};
     const sf::VideoMode SELECT_WINDOW_SIZE{400, 600};
     //Game
-    const sf::VideoMode GAME_WINDOW_SIZE{800, 600};
+    const float GAME_WINDOW_WIDTH = 1920;
+    const float GAME_WINDOW_HEIGHT = 1080;
     const std::string GAME_WINDOW_NAME_EASY{"Pacman easy"};
     const std::string GAME_WINDOW_NAME_MEDIUM{"Pacman medium"};
     const std::string GAME_WINDOW_NAME_HARD{"Pacman hard"};
+    const float GAME_ENEMY_RATIO_EASY = 0.0f;
+    const float GAME_ENEMY_RATIO_MEDIUM = 0.03f;
+    const float GAME_ENEMY_RATIO_HARD = 0.07f;
     const sf::Color WALL_COLOR{0, 255, 0};
-    const float ROOM_SIZE = 50;
+    const float ROOM_SIZE = 80;
     const sf::Color BACKGROUND_INGAME{255, 255, 255};
     const sf::Color BACKGROUND_LOST{255, 0, 0};
     const sf::Color BACKGROUND_WIN{0, 255, 0};
@@ -34,7 +38,7 @@ namespace config {
     const float ACTION_MEAN = 0.6;
     const float ACTION_STDDEV = 0.2;
     // Pacman
-    const std::string PACMAN_FILE{};
+    const std::string PACMAN_FILE{"pacman.png"};
     const float PACMAN_SIZE = ROOM_SIZE * 0.8;
     const sf::Color PACMAN_COLOR{253, 240, 193};
     const int PACMAN_OUTLINE_THICKNESS = 3;
