@@ -6,7 +6,7 @@
 
 class ContextManager {
 public:
-    void set_context(const GameContext& context) { m_context = context.clone(); }
+    void set_context(GameContext&& context) { m_context = std::move(context); }
     GameContext& get_context() { return m_context; }
     void save_current_context() { m_history.push(m_context.clone()); }
     void restore_previous_context();

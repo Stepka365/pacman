@@ -11,7 +11,6 @@ bool GameState::do_step() {
         process_all_events();
     }
     render();
-    m_context_manager.save_current_context();
     return true;
 }
 void GameState::event_handling() {
@@ -23,12 +22,11 @@ void GameState::event_handling() {
                                                   config::SELECT_WINDOW_SIZE,
                                                   config::SELECT_WINDOW_TITLE));
         }
-//        if (event.type == sf::Event::KeyPressed &&
-//            event.key.control &&
-//            event.key.code == sf::Keyboard::Z) {
-//            m_context_manager.restore_previous_context();
-//            return;
-//        }
+        if (event.type == sf::Event::KeyPressed &&
+            event.key.control &&
+            event.key.code == sf::Keyboard::Z) {
+            m_context_manager.restore_previous_context();
+        }
         if (event.type == sf::Event::KeyPressed &&
             m_context_manager.get_context().state == GameContext::INGAME) {
             process_key_pressed(event.key.code);
@@ -55,6 +53,7 @@ void GameState::update() {
         process_event(std::make_unique<WinGame>());
     }
 }
+
 void GameState::render() {
     m_window.clear(m_bg_color.at(m_context_manager.get_context().state));
     m_maze.draw_into(m_window);
@@ -70,14 +69,15 @@ void GameState::render() {
     m_window.display();
 }
 
-void GameState::set_context(const GameContext& context) {
-    m_context_manager.set_context(context);
+void GameState::set_context(GameContext&& context) {
+    m_context_manager.set_context(std::move(context));
     m_context_manager.save_current_context();
 }
 
 void GameState::process_key_pressed(const sf::Keyboard::Key& code) {
     auto it = m_key_dict.find(code);
     if (it != m_key_dict.end()) {
+        m_context_manager.save_current_context();
         m_context_manager.get_context().pacman.move(it->second);
     }
 }

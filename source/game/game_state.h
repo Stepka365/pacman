@@ -14,7 +14,7 @@ public:
             IState(state_manager), IWindowKeeper(mode, window_title) {}
     bool do_step() override;
     void set_maze(Maze&& maze) { m_maze = std::move(maze); }
-    void set_context(const GameContext& context);
+    void set_context(GameContext&& context);
 private:
     void process_key_pressed(const sf::Keyboard::Key& code);
     void process_event(std::unique_ptr<IGameEvent>&& event);
