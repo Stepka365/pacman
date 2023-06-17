@@ -19,6 +19,6 @@ void ComplexGameBuilder::create_state(IStateManager& state_manager, const std::s
 void ComplexGameBuilder::set_all_to_state() {
 
 }
-std::unique_ptr<GameState>&& ComplexGameBuilder::get_game() {
+std::unique_ptr<GameState> ComplexGameBuilder::get_game() {
     return std::move(m_game_state);
 }

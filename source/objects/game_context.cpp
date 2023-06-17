@@ -1,6 +1,6 @@
 #include "game_context.h"
 
-GameContext GameContext::clone() {
+GameContext GameContext::clone() const {
     GameContext clone_context;
     clone_context.state = state;
     clone_context.pacman = pacman;

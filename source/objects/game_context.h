@@ -8,7 +8,7 @@
 
 class GameContext {
 public:
-    GameContext clone();
+    GameContext clone() const;
 
     enum State { INGAME, WIN, LOST } state = INGAME;
     Pacman pacman;

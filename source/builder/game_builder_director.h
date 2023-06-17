@@ -11,7 +11,7 @@ public:
               m_window_title(window_title),
               m_dynamic_objects_ratio(dynamic_objects_ratio) {}
 
-    std::unique_ptr<GameState>&& build(IStateManager& state_manager);
+    std::unique_ptr<GameState> build(IStateManager& state_manager);
 private:
     std::unique_ptr<IGameBuilder> m_ptr_builder;
     std::string m_window_title;

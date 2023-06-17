@@ -1,6 +1,6 @@
 #include "game_builder_director.h"
 
-std::unique_ptr<GameState>&& GameBuilderDirector::build(IStateManager& state_manager) {
+std::unique_ptr<GameState> GameBuilderDirector::build(IStateManager& state_manager) {
     m_ptr_builder->create_rooms();
     m_ptr_builder->set_room_sides();
     m_ptr_builder->create_context(m_dynamic_objects_ratio);
