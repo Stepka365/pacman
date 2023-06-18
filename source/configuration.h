@@ -9,8 +9,8 @@ namespace config {
     const std::string SELECT_WINDOW_TITLE{"Select level"};
     const sf::VideoMode SELECT_WINDOW_SIZE{400, 600};
     //Game
-    const float GAME_WINDOW_WIDTH = 800;
-    const float GAME_WINDOW_HEIGHT = 600;
+    const float GAME_WINDOW_WIDTH = 1380;
+    const float GAME_WINDOW_HEIGHT = 750;
     const std::string GAME_WINDOW_NAME_EASY{"Pacman easy"};
     const std::string GAME_WINDOW_NAME_MEDIUM{"Pacman medium"};
     const std::string GAME_WINDOW_NAME_HARD{"Pacman hard"};

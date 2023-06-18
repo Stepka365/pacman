@@ -84,7 +84,6 @@ SimpleGameBuilder::make_mask_by_coords(std::vector<std::pair<size_t, size_t>>& c
 }
 
 void SimpleGameBuilder::create_context(float dynamic_objects_ratio) {
-    m_context.state = GameContext::INGAME;
     int enemies = dynamic_objects_ratio * m_rooms.size() * m_rooms[0].size();
     auto coords = randomize_dynamic_objects(enemies + 1);
     auto mask = make_mask_by_coords(coords);
@@ -108,7 +107,8 @@ void SimpleGameBuilder::create_context(float dynamic_objects_ratio) {
 }
 void SimpleGameBuilder::create_state(IStateManager& state_manager, const std::string& window_title) {
     m_game_state = std::make_unique<GameState>(
-            state_manager, sf::VideoMode{(unsigned int) m_width, (unsigned int) m_height},
+            state_manager,
+            sf::VideoMode{static_cast<unsigned int>(m_width), static_cast<unsigned int>(m_height)},
             window_title);
 }
 void SimpleGameBuilder::set_all_to_state() {
