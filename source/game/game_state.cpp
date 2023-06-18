@@ -39,14 +39,15 @@ void GameState::update() {
                   [](auto& elem) { elem->action(); });
     for (auto& elem: m_context_manager.get_context().dynamic_objects) {
         if (elem->get_location() == m_context_manager.get_context().pacman.get_location()) {
-            process_event(std::make_unique<LostGame>());
+            process_event(elem->accept(m_context_manager.get_context().pacman));
             return;
         }
     }
     for (auto it = m_context_manager.get_context().static_objects.begin();
          it != m_context_manager.get_context().static_objects.end(); ++it) {
         if ((*it)->get_location() == m_context_manager.get_context().pacman.get_location()) {
-            process_event(std::make_unique<DeleteStaticEntity>(it));
+            //process_event(std::make_unique<DeleteStaticEntity>(it));
+            process_event((*it)->accept(m_context_manager.get_context().pacman));
         }
     }
     if (m_context_manager.get_context().static_objects.empty()) {

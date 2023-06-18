@@ -1,7 +1,6 @@
 #pragma once
 
 #include "room.h"
-#include "../objects/i_entity.h"
 
 class Pass : public IRoomSide {
 public:

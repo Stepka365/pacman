@@ -11,6 +11,7 @@ public:
     void draw_into(sf::RenderWindow& window) override;
     void action() override;
     std::unique_ptr<IDynamicEntity> clone() const override { return std::make_unique<Enemy>(*this); }
+    std::unique_ptr<IGameEvent> accept(IVisitor& visitor) override;
 
 private:
     inline static std::mt19937 s_gen{std::random_device{}()};

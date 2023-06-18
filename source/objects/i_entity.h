@@ -2,6 +2,11 @@
 
 #include "../maze/room.h"
 
+class IVisitor;
+class IGameEvent;
+class Food;
+class Enemy;
+
 class IEntity : public IMyDrawable {
 public:
     void set_location(Room* room) { m_location = room; }

@@ -8,6 +8,7 @@ public:
     Food();
     void draw_into(sf::RenderWindow& window) override;
     std::unique_ptr<IStaticEntity> clone() const override { return std::make_unique<Food>(*this); }
+    std::unique_ptr<IGameEvent> accept(IVisitor& visitor) override;
 
 private:
     sf::CircleShape m_polygon;

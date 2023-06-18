@@ -2,7 +2,7 @@
 
 #include "configuration.h"
 
-class IWindowKeeper : public sf::RenderWindow {
+class IWindowKeeper {
 public:
     IWindowKeeper(const sf::VideoMode& mode, const std::string& title) : m_window(mode, title) {
         m_window.setFramerateLimit(config::FRAMERATE_LIMIT);

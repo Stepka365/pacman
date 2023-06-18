@@ -1,4 +1,6 @@
 #include "food.h"
+#include "i_visitor.h"
+#include "../game/i_game_event.h"
 
 Food::Food() : m_polygon(config::FOOD_SIZE, config::FOOD_POINT_COUNT) {
     m_polygon.setOrigin(m_polygon.getRadius(), m_polygon.getRadius());
@@ -12,4 +14,7 @@ void Food::draw_into(sf::RenderWindow& window) {
     auto room_pos = get_location()->get_position();
     m_polygon.setPosition(room_pos.x + room_size / 2, room_pos.y + room_size / 2);
     window.draw(m_polygon);
+}
+std::unique_ptr<IGameEvent> Food::accept(IVisitor& visitor) {
+    return visitor.visit(*this);
 }
