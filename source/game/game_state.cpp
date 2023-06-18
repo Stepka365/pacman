@@ -55,7 +55,7 @@ void GameState::update() {
 }
 
 void GameState::render() {
-    m_window.clear(m_bg_color.at(m_context_manager.get_context().state));
+    m_window.clear(m_bg_color.find(m_context_manager.get_context().state)->second);
     m_maze.draw_into(m_window);
 
     for (auto& elem: m_context_manager.get_context().static_objects) {
@@ -77,8 +77,12 @@ void GameState::set_context(GameContext&& context) {
 void GameState::process_key_pressed(const sf::Keyboard::Key& code) {
     auto it = m_key_dict.find(code);
     if (it != m_key_dict.end()) {
-        m_context_manager.save_current_context();
-        m_context_manager.get_context().pacman.move(it->second);
+        Pacman copy_pacman = m_context_manager.get_context().pacman;
+        copy_pacman.move(it->second);
+        if (copy_pacman.get_location() != m_context_manager.get_context().pacman.get_location()) {
+            m_context_manager.save_current_context();
+            m_context_manager.get_context().pacman = std::move(copy_pacman);
+        }
     }
 }
 
@@ -91,4 +95,11 @@ void GameState::process_all_events() {
         elem->handle(m_context_manager.get_context());
     }
     m_events.clear();
+}
+
+GameState::GameState(IStateManager& state_manager,
+                     const sf::VideoMode& mode,
+                     const std::string& window_title)
+        : IState(state_manager), IWindowKeeper(mode, window_title) {
+    m_window.setKeyRepeatEnabled(false);
 }

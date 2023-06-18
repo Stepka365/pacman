@@ -8,10 +8,8 @@
 
 class GameState : public IState, public IWindowKeeper {
 public:
-    GameState(IStateManager& state_manager,
-              const sf::VideoMode& mode,
-              const std::string& window_title) :
-            IState(state_manager), IWindowKeeper(mode, window_title) {}
+    GameState(IStateManager& state_manager, const sf::VideoMode& mode, const std::string& window_title);
+
     bool do_step() override;
     void set_maze(Maze&& maze) { m_maze = std::move(maze); }
     void set_context(GameContext&& context);

@@ -20,36 +20,38 @@ void SimpleGameBuilder::create_rooms() {
     }
 }
 void SimpleGameBuilder::set_room_sides() {
-    for (size_t i = 0; i < m_rooms.size(); ++i) {
-        for (size_t j = 0; j < m_rooms[0].size(); ++j) {
-            if (j == 0) {
-                m_rooms[i][j]->set_side(Room::LEFT, std::make_unique<Wall>(*m_rooms[i][j].get()));
-            }
-            else {
-                m_rooms[i][j]->set_side(Room::LEFT, std::make_unique<Pass>(*m_rooms[i][j].get(),
-                                                                           *m_rooms[i][j - 1].get()));
-            }
-            if (i == 0) {
-                m_rooms[i][j]->set_side(Room::UP, std::make_unique<Wall>(*m_rooms[i][j].get()));
-            }
-            else {
-                m_rooms[i][j]->set_side(Room::UP, std::make_unique<Pass>(*m_rooms[i][j].get(),
-                                                                         *m_rooms[i - 1][j].get()));
-            }
-            if (j == m_rooms[0].size() - 1) {
-                m_rooms[i][j]->set_side(Room::RIGHT, std::make_unique<Wall>(*m_rooms[i][j].get()));
-            }
-            else {
-                m_rooms[i][j]->set_side(Room::RIGHT, std::make_unique<Pass>(*m_rooms[i][j].get(),
-                                                                            *m_rooms[i][j + 1]));
-            }
-            if (i == m_rooms.size() - 1) {
-                m_rooms[i][j]->set_side(Room::DOWN, std::make_unique<Wall>(*m_rooms[i][j].get()));
-            }
-            else {
-                m_rooms[i][j]->set_side(Room::DOWN, std::make_unique<Pass>(*m_rooms[i][j].get(),
-                                                                           *m_rooms[i + 1][j].get()));
-            }
+    for (auto& up: m_rooms[0]) {
+        up->set_side(Room::UP, std::make_unique<Wall>(*up));
+    }
+    for (auto& down: m_rooms[m_rooms.size() - 1]) {
+        down->set_side(Room::DOWN, std::make_unique<Wall>(*down));
+    }
+    for (auto& line: m_rooms) {
+        line[0]->set_side(Room::LEFT, std::make_unique<Wall>(*line[0]));
+        line[line.size() - 1]->set_side(Room::RIGHT, std::make_unique<Wall>(*line[line.size() - 1]));
+    }
+    for (size_t line = 1; line <= m_rooms.size() - 1; ++line) {
+        m_rooms[line][0]->set_side(
+                Room::UP, std::make_unique<Pass>(*m_rooms[line][0], *m_rooms[line - 1][0]));
+        m_rooms[line - 1][0]->set_side(
+                Room::DOWN, std::make_unique<Pass>(*m_rooms[line][0], *m_rooms[line - 1][0]));
+    }
+    for (size_t col = 1; col <= m_rooms[0].size() - 1; ++col) {
+        m_rooms[0][col]->set_side(
+                Room::LEFT, std::make_unique<Pass>(*m_rooms[0][col], *m_rooms[0][col - 1]));
+        m_rooms[0][col - 1]->set_side(
+                Room::RIGHT, std::make_unique<Pass>(*m_rooms[0][col], *m_rooms[0][col - 1]));
+    }
+    for (size_t line = 1; line <= m_rooms.size() - 1; ++line) {
+        for (size_t col = 1; col <= m_rooms[0].size() - 1; ++col) {
+            m_rooms[line][col]->set_side(
+                    Room::UP, std::make_unique<Pass>(*m_rooms[line][col], *m_rooms[line - 1][col]));
+            m_rooms[line - 1][col]->set_side(
+                    Room::DOWN, std::make_unique<Pass>(*m_rooms[line][col], *m_rooms[line - 1][col]));
+            m_rooms[line][col]->set_side(
+                    Room::LEFT, std::make_unique<Pass>(*m_rooms[line][col], *m_rooms[line][col - 1]));
+            m_rooms[line][col - 1]->set_side(
+                    Room::RIGHT, std::make_unique<Pass>(*m_rooms[line][col], *m_rooms[line][col - 1]));
         }
     }
 }
