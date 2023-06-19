@@ -1,13 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <string>
 
 namespace config {
     const size_t FRAMERATE_LIMIT = 60;
     // Select Window
     const std::string SELECT_WINDOW_TITLE{"Select level"};
     const sf::VideoMode SELECT_WINDOW_SIZE{400, 600};
+    const std::string SELECT_MUSIC_FILE{"PointZero.wav"};
     //Game
     const float GAME_WINDOW_WIDTH = 1380;
     const float GAME_WINDOW_HEIGHT = 750;
@@ -22,6 +22,9 @@ namespace config {
     const sf::Color BACKGROUND_INGAME{20, 20, 20};
     const sf::Color BACKGROUND_LOST{255, 0, 0};
     const sf::Color BACKGROUND_WIN{0, 255, 0};
+    const std::string GAME_MUSIC_EASY{"Overpowered.wav"};
+    const std::string GAME_MUSIC_HARD{"The four rings.wav"};
+    const std::string GAME_LOST_SOUND{"Bruh.wav"};
     // Food
     const std::string FOOD_FILE{"yum.png"};
     const float FOOD_SIZE = ROOM_SIZE * 0.4 / 2;

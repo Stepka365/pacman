@@ -4,5 +4,8 @@
 
 class LostGame : public IGameEvent {
 public:
-    void handle(GameContext& context) override { context.state = GameContext::LOST; }
+    void handle(GameContext& context) override {
+        context.state = GameContext::LOST;
+        GameContext::lost_sound.play();
+    }
 };

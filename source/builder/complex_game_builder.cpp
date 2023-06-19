@@ -147,6 +147,7 @@ void ComplexGameBuilder::create_state(IStateManager& state_manager, const std::s
             window_title);
 }
 void ComplexGameBuilder::set_all_to_state() {
+    m_game_state->set_music_and_play(config::GAME_MUSIC_HARD);
     m_game_state->set_maze(std::move(m_rooms));
     m_game_state->set_context(std::move(m_context));
 }

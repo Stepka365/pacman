@@ -9,6 +9,10 @@ void SimpleGameBuilder::create_rooms() {
     int cols = m_width / m_room_size;
     float pos00x = (m_width - cols * m_room_size) / 2;
     float pos00y = (m_height - lines * m_room_size) / 2;
+//    m_rooms.resize(lines);
+//    for (auto& line: m_rooms){
+//        m_rooms.resize(cols);
+//    }
     for (size_t i = 0; i < lines; ++i) {
         std::vector<std::unique_ptr<Room>> cur_col;
         for (size_t j = 0; j < cols; ++j) {
@@ -112,6 +116,7 @@ void SimpleGameBuilder::create_state(IStateManager& state_manager, const std::st
             window_title);
 }
 void SimpleGameBuilder::set_all_to_state() {
+    m_game_state->set_music_and_play(config::GAME_MUSIC_EASY);
     m_game_state->set_maze(std::move(m_rooms));
     m_game_state->set_context(std::move(m_context));
 }

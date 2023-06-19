@@ -31,6 +31,9 @@ void GameState::event_handling() {
             m_context_manager.get_context().state == GameContext::INGAME) {
             process_key_pressed(event.key.code);
         }
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::P){
+            music_play_pause();
+        }
     }
 }
 void GameState::update() {
@@ -46,7 +49,6 @@ void GameState::update() {
     for (auto it = m_context_manager.get_context().static_objects.begin();
          it != m_context_manager.get_context().static_objects.end(); ++it) {
         if ((*it)->get_location() == m_context_manager.get_context().pacman.get_location()) {
-            //process_event(std::make_unique<DeleteStaticEntity>(it));
             process_event((*it)->accept(m_context_manager.get_context().pacman));
         }
     }
@@ -103,4 +105,19 @@ GameState::GameState(IStateManager& state_manager,
                      const std::string& window_title)
         : IState(state_manager), IWindowKeeper(mode, window_title) {
     m_window.setKeyRepeatEnabled(false);
+}
+
+void GameState::set_music_and_play(const std::string& file_name) {
+    m_music.openFromFile(file_name);
+    m_music.play();
+    m_music.setLoop(true);
+}
+
+void GameState::music_play_pause() {
+    if (m_music.getStatus() == sf::Music::Playing) {
+        m_music.pause();
+    }
+    else {
+        m_music.play();
+    }
 }

@@ -19,7 +19,8 @@ Button::Button(const sf::Vector2f& button_center_pos,
     m_text.setFont(m_font);
     m_text.setString(text);
     m_text.setCharacterSize(font_size);
-    m_text.setOrigin(m_text.getLocalBounds().width / 2, m_text.getLocalBounds().height / 2);
+    auto bounds = m_text.getLocalBounds();
+    m_text.setOrigin(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
     m_text.setPosition(button_center_pos);
 
     m_ptr_command = std::move(ptr_command);

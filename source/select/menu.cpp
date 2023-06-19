@@ -48,15 +48,15 @@ Menu::Menu(IStateManager& state_manager) {
             std::make_unique<ExitCommand>(state_manager)));
 }
 
-void Menu::process_mouse(const sf::Vector2f& pos, bool is_pressed) {
+void Menu::process_mouse(const sf::RenderWindow& window, bool is_pressed) {
     for (auto& ptr_button: m_buttons) {
-        if (ptr_button->is_position_in(pos)) {
+        if (ptr_button->is_position_in(sf::Vector2f(sf::Mouse::getPosition(window)))) {
             ptr_button->select();
         }
         else {
             ptr_button->unselect();
         }
-        if (ptr_button->is_selected() && is_pressed) {
+        if (ptr_button->is_selected() && is_pressed && window.hasFocus()) {
             ptr_button->push();
         }
     }
